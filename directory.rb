@@ -1,4 +1,3 @@
-
 def print_header
   puts "The students of Villains Academy:"
   puts "------------"
@@ -13,7 +12,11 @@ def input_students
   name = gets.chomp
   
   while !name.empty? do 
-    students << {name: name, cohort: :october}
+    puts "What's the age?"
+    age = gets.chomp
+    puts "What's the Country?"
+    country = gets.chomp
+    students << {name: name, age: age, country: country, cohort: :october}
     puts "Now we have #{students.count} students"
     name = gets.chomp
   end
@@ -22,9 +25,7 @@ end
 
 def print(students) 
   students.each.with_index(1) do |student, index|
-    if "#{student[:name]}".length < 12
-      puts "#{index}. #{student[:name]} (#{student[:cohort]} cohort)"
-    end
+    puts "#{index}. #{student[:name]}, #{student[:age]}, #{student[:country]} (#{student[:cohort]} cohort)"
   end
 end
 
