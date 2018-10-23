@@ -17,7 +17,11 @@ def input_students
     puts "What's the Country?"
     country = gets.chomp
     students << {name: name, age: age, country: country, cohort: :october}
-    puts "Now we have #{students.count} students"
+    if students.count == 1
+      puts "Now we have 1 student"
+    else
+      puts "Now we have #{students.count} students"
+    end
     name = gets.chomp
   end
   students
