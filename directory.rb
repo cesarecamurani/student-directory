@@ -1,21 +1,23 @@
-# let's put all the students into an array
-students = [
-  {name: "Hannibal Lecter", cohort: :october},
-  {name: "Darth Vader", cohort: :october},
-  {name: "Lord Humungus",cohort: :october},
-  {name: "Michael Corleone", cohort: :october},
-  {name: "Alex DeLarge", cohort: :october},
-  {name: "The Wicked Witch of the West", cohort: :october},
-  {name: "Terminator", cohort: :october},
-  {name: "Freddy Krueger", cohort: :october},
-  {name: "The Joker", cohort: :october},
-  {name: "Cersey Lannister", cohort: :october},
-  {name: "Sauron", cohort: :october}
-]
 
 def print_header
   puts "The students of Villains Academy:"
-  puts "-----------------"
+  puts "------------"
+end
+
+def input_students
+  puts "Please enter the names of the students: "
+  puts "To finish, just hit return twice"
+  
+  students = []
+  
+  name = gets.chomp
+  
+  while !name.empty? do 
+    students << {name: name, cohort: :october}
+    puts "Now we have #{students.count} students"
+    name = gets.chomp
+  end
+  students
 end
 
 def print(students)
@@ -25,10 +27,11 @@ def print(students)
 end
 
 def print_footer(students)
-  puts "-----------------"
+  puts "------------"
   puts "Overall, we have #{students.count} great students!"
 end
 
+students = input_students
 print_header
 print(students)
 print_footer(students)
