@@ -1,0 +1,17 @@
+puts "The students of Villains Academy"
+puts "--------------"
+puts "Hannibal Lecter"
+puts "Darth Vader"
+puts "Lord Humungus"
+puts "Micheal Corleone"
+puts "Alex DeLarge"
+puts "The Wicked Witch of the West"
+puts "Terminator"
+puts "Freddy Krueger"
+puts "Joker"
+puts "Cersey Lannister"
+puts "Sauron"
+
+print "Overall, we have "
+print 11
+puts " great students"
