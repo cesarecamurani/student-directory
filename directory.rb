@@ -1,18 +1,25 @@
-student_count = 11
-# first we print the list of students
-puts "The students of Villains Academy"
-puts "--------------"
-puts "Hannibal Lecter"
-puts "Darth Vader"
-puts "Lord Humungus"
-puts "Micheal Corleone"
-puts "Alex DeLarge"
-puts "The Wicked Witch of the West"
-puts "Terminator"
-puts "Freddy Krueger"
-puts "Joker"
-puts "Cersey Lannister"
-puts "Sauron"
-# finally we print the total number of students
-puts "Overall, we have #{student_count} great students!"
+# let's put all the students into an array
+students = [
+"Hannibal Lecter",
+ "Darth Vader",
+ "Lord Humungus",
+ "Micheal Corleone",
+"Alex DeLarge",
+"The Wicked Witch of the West",
+"Terminator",
+"Freddy Krueger",
+"Joker",
+"Cersey Lannister",
+"Sauron",
+]
+
+# and the print them
+puts "The students of Villains Academy:"
+puts "-----------------"
+students.each do |student|
+  puts student
+end
+
+# finally we print the total 
+puts "Overall, we have #{students.count} great students!"
 
