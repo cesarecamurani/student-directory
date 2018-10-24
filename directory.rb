@@ -12,16 +12,16 @@ def input_students
    
   students = []
    
-  name = gets.chomp
+  name = gets.gsub("\n", "")
   
   while !name.empty? do 
     puts "What's the age?"
-    age = gets.chomp
+    age = gets.gsub("\n", "")
     puts "What's the Country?"
-    country = gets.chomp
+    country = gets.gsub("\n", "")
     students << {name: name, age: age, country: country, cohort: :october}
     puts "Now we have #{students.count} students"
-    name = gets.chomp
+    name = gets.gsub("\n", "")
   end
   students
 end
