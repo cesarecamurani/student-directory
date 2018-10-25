@@ -11,22 +11,22 @@ def input_students
   
   months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
   
-  name = gets.chomp.capitalize
+  name = STDIN.gets.chomp.capitalize
   
   while !name.empty? do 
     puts "What's the age?"
-    age = gets.chomp
+    age = STDIN.gets.chomp
     puts "What's the Country?"
-    country = gets.chomp.capitalize
+    country = STDIN.gets.chomp.capitalize
     puts "What's the cohort month?"
-    cohort = gets.chomp.capitalize
+    cohort = STDIN.gets.chomp.capitalize
     if cohort.empty? 
         @students << {name: name, age: age, country: country, cohort: "Makers"}
     elsif months.include? cohort
         @students << {name: name, age: age, country: country, cohort: :cohort}
     end
     puts "Now we have #{@students.count} students"
-    name = gets.chomp
+    name = STDIN.gets.chomp
   end
 end
 
@@ -43,7 +43,7 @@ end
 def interactive_menu
   loop do
     print_menu
-    process(gets.chomp)
+    process(STDIN.gets.chomp)
   end
 end
 
@@ -96,8 +96,8 @@ def save_students
   file.close
 end
 
-def load_students
-  file = File.open("students.csv", "r")
+def load_students(filename = "students.csv")
+  file = File.open(filename, "r")
   file.readlines.each do |line|
   name, age , country, cohort = line.chomp.split(" , ")
     @students << {name: name, age: age, country: country, cohort: cohort.to_sym}
@@ -105,4 +105,17 @@ def load_students
   file.close
 end
 
+def try_load_students
+  filename = ARGV.first
+  return if filename.nil?
+  if File.exists?(filename)
+    load_students(filename)
+    puts "Loaded #{@students.count} students from #{filename}"
+  else
+    puts "Sorry, #{filename} doesn't exist."
+    exit
+  end
+end
+
+try_load_students
 interactive_menu
