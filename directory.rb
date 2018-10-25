@@ -1,3 +1,5 @@
+@students = []
+
 def print_header
   puts "The students of Villains Academy:"
   puts "------------"
@@ -7,8 +9,7 @@ def input_students
   puts "Please enter the names of the students: "
   puts "To finish, just hit return twice"
   
-  students = []
-  months = ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"]
+  months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
   
   name = gets.chomp.capitalize
   
@@ -18,22 +19,21 @@ def input_students
     puts "What's the Country?"
     country = gets.chomp.capitalize
     puts "What's the cohort month?"
-    cohort = gets.chomp
+    cohort = gets.chomp.capitalize
     if cohort.empty? 
-        students << {name: name, age: age, country: country, cohort: "Makers"}
+        @students << {name: name, age: age, country: country, cohort: "Makers"}
     elsif months.include? cohort
-        students << {name: name, age: age, country: country, cohort: cohort}
+        @students << {name: name, age: age, country: country, cohort: cohort}
     end
-    puts "Now we have #{students.count} students"
+    puts "Now we have #{@students.count} students"
     name = gets.chomp
   end
-  students
 end
 
-def print(students) 
+def print_students_list
   counter = 0
-  while counter < students.count
-    students.map.with_index(1) do |student, index|
+  while counter < @students.count
+    @students.map.with_index(1) do |student, index|
       puts "#{index}. #{student[:name]}, #{student[:age]}, #{student[:country]} (#{student[:cohort]} cohort)"
       counter += 1
     end
@@ -41,32 +41,42 @@ def print(students)
 end
 
 def interactive_menu
-  students = []
   loop do
-    puts "1. Input the students"
-    puts "2. Show the students"
-    puts "9. Exit"
-    selection = gets.chomp
-    case selection
-    when "1"
-      students = input_students
-    when "2"
-      print_header
-      print(students)
-      print_footer(students)
-    when "9"
-      break
-    else
-      puts "I don't know what you mean, try again!"
-    end
-end
+    print_menu
+    process(gets.chomp)
+  end
 end
 
-def print_footer(students)
-  if !students.empty?
+def print_footer
+  if !@students.empty?
     puts "------------"
-    puts "Overall, we have #{students.count} great students!"
+    puts "Overall, we have #{@students.count} great students!"
   else
+  end
+end
+
+def print_menu
+  puts "1. Input the students"
+  puts "2. Show the students"
+  puts "9. Exit"
+end
+
+def show_students
+  print_header
+  print_students_list
+  print_footer
+end
+
+def process(selection)
+  case selection
+  when "1"
+    input_students
+  when "2"
+    show_students
+  when "9"
+    exit
+  else
+    puts "I don't know what you mean, try again!"
   end
 end
 
